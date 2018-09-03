@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 	public float spawnTime, initialFallSpeed;
 	public GameObject redC, greenC, yellowC;
@@ -40,5 +40,9 @@ public class GameManager : MonoBehaviour {
 	}
 	public void adjustFallSpeed(){
 		fallSpeed += fallSpeedAdd;
+	}
+
+	public void resetGame(){
+		SceneManager.LoadScene ("gameroom");
 	}
 }
