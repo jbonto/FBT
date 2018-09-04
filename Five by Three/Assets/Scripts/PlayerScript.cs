@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour {
 	public Vector2 playerTouchPosition;
 	private int red = 0, green = 0, yellow = 0;
 	private Rigidbody2D RB2D;
-	public enum controlScheme {Keyboard, Touch, Gyrometer};
+	public enum controlScheme {Keyboard, TouchHold, TouchTap, Gyrometer};
 	public controlScheme currentControls;
 	public int goal;
 	public float moveSpeed;
@@ -17,6 +17,8 @@ public class PlayerScript : MonoBehaviour {
 	public float screenRight;
 	public float screenLeft;
 	public float threshold;
+	private float playerPercent;
+	private bool isMoving = false;
 
 	[Header("Referenced Objects")]
 	public Text setDisplay;
@@ -31,6 +33,7 @@ public class PlayerScript : MonoBehaviour {
 	private Vector2 empty = new Vector2(0f,0f);
 	private Touch playerTouch;
 	private int sets = 0;
+	public GameObject posTest;
 	// Use this for initialization
 	void Start () {
 		PlayerPrefs.SetInt ("sets", 0);
@@ -51,12 +54,15 @@ public class PlayerScript : MonoBehaviour {
 
 	}
 	void FixedUpdate(){
+		playerPercent = (this.transform.position.x - screenLeft) / (screenRight - screenLeft);
 		if (currentControls == controlScheme.Keyboard) {
 			KeyboardControls ();
-		} else if (currentControls == controlScheme.Touch) {
+		} else if (currentControls == controlScheme.TouchHold) {
 			TouchControls ();
 		} else if (currentControls == controlScheme.Gyrometer) {
 			GyroControls ();
+		} else if (currentControls == controlScheme.TouchTap) {
+			TouchTap ();
 		}
 	}
 
@@ -75,7 +81,6 @@ public class PlayerScript : MonoBehaviour {
 			return 0f;
 
 		float touchPercent = touchPos / Screen.width;
-		float playerPercent = (this.transform.position.x - screenLeft) / (screenRight - screenLeft);
 		if (touchPercent >= playerPercent + threshold) {
 			return 1f;
 		} else if (touchPercent < playerPercent - threshold) {
@@ -84,9 +89,54 @@ public class PlayerScript : MonoBehaviour {
 			return 0f;
 		}
 	}
-
 	void GyroControls(){
 
+	}
+	void TouchTap(){
+		if (Input.GetTouch (0).position!=empty) {
+			RB2D.velocity = new Vector2 (0f, 0f);
+			setDisplay.text =isMoving.ToString();
+			StopCoroutine (MoveToTap (0f));
+			StartCoroutine (MoveToTap (Input.GetTouch (0).position.x));
+		}
+	}
+	public IEnumerator MoveToTap(float touchPos){
+		isMoving = true;
+		int movement = -1;
+		/**1 = moving to the right, 2 to the left, 3 stop
+		 * 
+		 * */
+		float touchPercent = touchPos / Screen.width;
+		if (touchPercent >= playerPercent) {
+			movement = 1;
+		} else {
+			movement = 2;
+		}
+		posTest.transform.position = new Vector2 (screenPosition(touchPercent), this.transform.position.y);
+		while (movement != 3) {
+			yield return null;
+			if (movement == 1) {
+				RB2D.velocity = new Vector2 (moveSpeed, 0f);
+				if(playerPercent > touchPercent-threshold){
+					movement = 3;
+					isMoving = false;
+				}
+			}
+			if (movement == 2) {
+				RB2D.velocity = new Vector2 (moveSpeed * -1f, 0f);
+				if (playerPercent < touchPercent+threshold) {
+					movement = 3;
+					isMoving = false;
+				}
+			}
+		}
+		RB2D.velocity = new Vector2 (0f, 0f);
+		isMoving = false;
+	}
+	float screenPosition(float percent){
+		float i;
+		i = screenLeft + ((screenRight - screenLeft) * percent);
+		return i;
 	}
 	public void addPoints(int r, int g, int y){
 		red += r;
