@@ -92,11 +92,15 @@ public class PlayerScript : MonoBehaviour {
 	void GyroControls(){
 
 	}
+	private bool terminateMove = false;
 	void TouchTap(){
-		if (Input.GetTouch (0).position!=empty) {
-			RB2D.velocity = new Vector2 (0f, 0f);
+		if (Input.touchCount > 0) {
 			setDisplay.text =isMoving.ToString();
-			StopCoroutine (MoveToTap (0f));
+			if (RB2D.velocity.x != 0f) {
+				StopCoroutine (MoveToTap(0f));
+				RB2D.velocity = new Vector2 (0f, 0f);
+				Debug.Log ("attemping coroutine stop");
+			}
 			StartCoroutine (MoveToTap (Input.GetTouch (0).position.x));
 		}
 	}
