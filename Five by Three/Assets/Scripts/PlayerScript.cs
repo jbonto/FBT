@@ -37,7 +37,7 @@ public class PlayerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		PlayerPrefs.SetInt ("sets", 0);
-
+		posTest.transform.position = this.transform.position;
 		setDisplay.text = "Sets: " + sets.ToString ();
 		redScoreDisplay.text = "Red: " + red.ToString ();
 		greenScoreDisplay.text = "Green: " + green.ToString ();
@@ -47,12 +47,7 @@ public class PlayerScript : MonoBehaviour {
 		audioMixer = Resources.Load ("Audio/CardMixer") as AudioMixer;
 		audio = GetComponent<AudioSource> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 
-	}
 	void FixedUpdate(){
 		playerPercent = (this.transform.position.x - screenLeft) / (screenRight - screenLeft);
 		if (currentControls == controlScheme.Keyboard) {
@@ -69,6 +64,8 @@ public class PlayerScript : MonoBehaviour {
 	void KeyboardControls(){
 		float m = Input.GetAxis ("Horizontal");
 		RB2D.velocity = new Vector2 (moveSpeed * m, 0f);
+		transform.position = Vector3.MoveTowards (transform.position, posTest.transform.position, (moveSpeed * Time.deltaTime));
+
 	}
 
 	void TouchControls(){
@@ -92,20 +89,19 @@ public class PlayerScript : MonoBehaviour {
 	void GyroControls(){
 
 	}
-	private bool terminateMove = false;
+
 	void TouchTap(){
 		if (Input.touchCount > 0) {
 			setDisplay.text =isMoving.ToString();
-			if (RB2D.velocity.x != 0f) {
-				StopCoroutine (MoveToTap(0f));
-				RB2D.velocity = new Vector2 (0f, 0f);
-				Debug.Log ("attemping coroutine stop");
-			}
-			StartCoroutine (MoveToTap (Input.GetTouch (0).position.x));
+			newPos(Input.GetTouch (0).position.x);
 		}
+		transform.position = Vector2.MoveTowards (this.transform.position, posTest.transform.position, moveSpeed * Time.deltaTime);
+	}
+	void newPos(float touchPos){
+		float touchPercent = touchPos / Screen.width;
+		posTest.transform.position = new Vector2 (screenPosition(touchPercent), this.transform.position.y);
 	}
 	public IEnumerator MoveToTap(float touchPos){
-		isMoving = true;
 		int movement = -1;
 		/**1 = moving to the right, 2 to the left, 3 stop
 		 * 
@@ -135,7 +131,6 @@ public class PlayerScript : MonoBehaviour {
 			}
 		}
 		RB2D.velocity = new Vector2 (0f, 0f);
-		isMoving = false;
 	}
 	float screenPosition(float percent){
 		float i;
