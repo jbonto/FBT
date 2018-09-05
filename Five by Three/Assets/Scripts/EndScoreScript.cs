@@ -6,8 +6,33 @@ using UnityEngine.SceneManagement;
 public class EndScoreScript : MonoBehaviour {
 	public string levelName;
 	public Text scoreText;
+	public int[] playerScores;
 	// Use this for initialization
 	void Start () {
+		string entry = "score";
+		for (int i = 0; i < (playerScores.Length-1); i++) {
+			playerScores [i] = PlayerPrefs.GetInt (entry);
+			entry += i;
+		}
+		playerScores [playerScores.Length-1] = PlayerPrefs.GetInt ("sets");
+		for(int z = 0; z < playerScores.Length; z++){
+			for (int i = 0; i < (playerScores.Length - 1); i++) {
+				if (playerScores [i] < playerScores [i + 1]) {
+					int q = playerScores[i+1];
+					playerScores [i + 1] = playerScores [i];
+					playerScores [i] = q;
+				}
+			}
+		} 
+		for (int i = 0; i < playerScores.Length; i++) {
+			Debug.Log (i+"   "+playerScores [i]);	
+		}
+		entry = "score";
+		for (int i = 0; i < (playerScores.Length-1); i++) {
+			PlayerPrefs.SetInt(entry, playerScores[i]);
+			entry += i;
+		} 
+		/**
 		if (PlayerPrefs.GetInt ("sets") == PlayerPrefs.GetInt ("highscore")) {
 			scoreText.text = "The current high score is: "+PlayerPrefs.GetInt("highscore").ToString()+", equal to the amount of sets you scored.";
 			Debug.Log ("no new score set");
@@ -19,6 +44,7 @@ public class EndScoreScript : MonoBehaviour {
 			scoreText.text = "The current high score is: "+PlayerPrefs.GetInt("highscore").ToString()+", no new high score has been set.";
 			Debug.Log ("highscore is higher");
 		}
+		*/
 	}
 	public void goTo(){
 		SceneManager.LoadScene (levelName);

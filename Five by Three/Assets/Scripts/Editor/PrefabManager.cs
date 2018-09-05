@@ -7,7 +7,7 @@ public class PrefabManager : EditorWindow{
 	public static void ShowWindow(){
 		GetWindow<PrefabManager> ("Playerpref Manager");
 	}
-	string fieldString;
+	string fieldString, scoreID;
 	void OnGUI(){
 		//you must close than reopen a window to refresh the name
 		fieldString = EditorGUILayout.TextField("Int to set", fieldString);

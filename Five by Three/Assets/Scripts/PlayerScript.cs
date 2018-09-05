@@ -36,6 +36,11 @@ public class PlayerScript : MonoBehaviour {
 	public GameObject posTest;
 	// Use this for initialization
 	void Start () {
+		string test = "test";
+		test += 1;
+		Debug.Log (test);
+		test +=1 ;
+		Debug.Log (test);
 		PlayerPrefs.SetInt ("sets", 0);
 		posTest.transform.position = this.transform.position;
 		setDisplay.text = "Sets: " + sets.ToString ();
