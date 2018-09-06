@@ -1,13 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ResultScreenScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\Editor\PrefabManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BlockScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\DestroyObjects.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ResultScreenScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerScript.cs" Line="149" Column="66" />
+      <File FileName="Assets\Scripts\EndScoreScript.cs" Line="48" Column="3" />
+      <File FileName="Assets\Scripts\Editor\PrefabManager.cs" Line="14" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

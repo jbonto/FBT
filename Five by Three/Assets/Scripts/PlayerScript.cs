@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour {
 	public Vector2 playerTouchPosition;
 	private int red = 0, green = 0, yellow = 0;
 	private Rigidbody2D RB2D;
-	public enum controlScheme {Keyboard, TouchHold, TouchTap, Gyrometer};
+	public enum controlScheme {Keyboard, TouchHold, TouchTap, Gyrometer, Mouse};
 	public controlScheme currentControls;
 	public int goal;
 	public float moveSpeed;
@@ -63,6 +63,8 @@ public class PlayerScript : MonoBehaviour {
 			GyroControls ();
 		} else if (currentControls == controlScheme.TouchTap) {
 			TouchTap ();
+		} else if (currentControls == controlScheme.Mouse) {
+			MouseControls ();
 		}
 	}
 
@@ -141,6 +143,11 @@ public class PlayerScript : MonoBehaviour {
 		float i;
 		i = screenLeft + ((screenRight - screenLeft) * percent);
 		return i;
+	}
+	void MouseControls(){
+		if (Input.GetButtonDown("Fire1")) {
+			Debug.Log  (Camera.main.ScreenToWorldPoint(Input.mousePosition));
+		}
 	}
 	public void addPoints(int r, int g, int y){
 		red += r;

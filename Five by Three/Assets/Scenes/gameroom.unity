@@ -604,7 +604,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 4.13, y: 4.04}
-    newSize: {x: 18.64, y: 8.6}
+    newSize: {x: 4.13, y: 4.04}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -867,7 +867,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 4.52, y: 3.99}
-    newSize: {x: 18.64, y: 8.6}
+    newSize: {x: 4.52, y: 3.99}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -907,7 +907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTouchPosition: {x: 0, y: 0}
-  currentControls: 0
+  currentControls: 4
   goal: 5
   moveSpeed: 6
   levelName: endroom
@@ -2242,7 +2242,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 4.53, y: 3.54}
-    newSize: {x: 18.64, y: 8.6}
+    newSize: {x: 4.53, y: 3.54}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
