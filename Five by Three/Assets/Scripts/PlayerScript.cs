@@ -34,8 +34,12 @@ public class PlayerScript : MonoBehaviour {
 	private Touch playerTouch;
 	private int sets = 0;
 	public GameObject posTest;
+	private Vector3 mousePos;
+	private Vector3 h;
 	// Use this for initialization
 	void Start () {
+		Vector3 h = this.transform.position;
+		mousePos = this.transform.position;
 		string test = "test";
 		test += 1;
 		Debug.Log (test);
@@ -71,7 +75,7 @@ public class PlayerScript : MonoBehaviour {
 	void KeyboardControls(){
 		float m = Input.GetAxis ("Horizontal");
 		RB2D.velocity = new Vector2 (moveSpeed * m, 0f);
-		transform.position = Vector3.MoveTowards (transform.position, posTest.transform.position, (moveSpeed * Time.deltaTime));
+//transform.position = Vector3.MoveTowards (transform.position, posTest.transform.position, (moveSpeed * Time.deltaTime));
 
 	}
 
@@ -144,10 +148,14 @@ public class PlayerScript : MonoBehaviour {
 		i = screenLeft + ((screenRight - screenLeft) * percent);
 		return i;
 	}
+
 	void MouseControls(){
+		
 		if (Input.GetButtonDown("Fire1")) {
-			Debug.Log  (Camera.main.ScreenToWorldPoint(Input.mousePosition));
+			h=Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Debug.Log  (h.x);
 		}
+		//this.transform.position = new Vector2.MoveTowards (h.x, this.transform.position.y);
 	}
 	public void addPoints(int r, int g, int y){
 		red += r;

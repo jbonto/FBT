@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 public class EndScoreScript : MonoBehaviour {
 	public string levelName;
 	public Text scoreText;
 	public int[] playerScores;
+	public TextMeshProUGUI[] HSText;
 	// Use this for initialization
 	void Start () {
 		string entry = "score";
@@ -29,6 +31,11 @@ public class EndScoreScript : MonoBehaviour {
 		}
 		entry = "score";
 		for (int i = 0; i < (playerScores.Length-1); i++) {
+			try{
+				HSText[i].SetText(playerScores[i].ToString());
+			} catch {
+				Debug.Log ("Textmesh " + i + " is nonexistant");
+			}
 			PlayerPrefs.SetInt(entry, playerScores[i]);
 			entry += i;
 		} 
