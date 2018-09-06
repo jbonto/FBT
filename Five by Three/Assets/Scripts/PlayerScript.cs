@@ -152,10 +152,15 @@ public class PlayerScript : MonoBehaviour {
 	void MouseControls(){
 		
 		if (Input.GetButtonDown("Fire1")) {
-			h=Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			h = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			Debug.Log  (h.x);
+			changeMous (h);
 		}
-		//this.transform.position = new Vector2.MoveTowards (h.x, this.transform.position.y);
+		//		transform.position = Vector2.MoveTowards (this.transform.position, posTest.transform.position, moveSpeed * Time.deltaTime);
+		transform.position = Vector2.MoveTowards (this.transform.position,mousePos, moveSpeed * Time.deltaTime);
+	}
+	void changeMous(Vector3 h){
+		mousePos = new Vector3 (h.x, mousePos.y, mousePos.z);
 	}
 	public void addPoints(int r, int g, int y){
 		red += r;
