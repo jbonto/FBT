@@ -85,7 +85,7 @@ public class PlayerScript : MonoBehaviour {
 		} else {
 			RB2D.velocity = new Vector2 (0f, 0f);
 		}
-		setDisplay.text = Input.GetTouch (0).deltaPosition.x.ToString ();
+//		setDisplay.text = Input.GetTouch (0).deltaPosition.x.ToString ();
 	}
 
 	float determineMovement(float touchPos){
