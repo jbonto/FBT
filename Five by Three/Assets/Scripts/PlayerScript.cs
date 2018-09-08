@@ -80,22 +80,22 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void TouchControls(){
-		RB2D.velocity = new Vector2 (moveSpeed * determineMovement(Input.GetTouch (0).position.x), 0f);
+		if (Input.touchCount > 0) {
+			RB2D.velocity = new Vector2 (moveSpeed * determineMovement (Input.GetTouch (0).position.x), 0f);
+		} else {
+			RB2D.velocity = new Vector2 (0f, 0f);
+		}
 		setDisplay.text = Input.GetTouch (0).deltaPosition.x.ToString ();
 	}
 
 	float determineMovement(float touchPos){
-		if (Input.GetTouch (0).deltaPosition.x == 0f)
-			return 0f;
-
 		float touchPercent = touchPos / Screen.width;
-		if (touchPercent >= playerPercent + threshold) {
+		if (touchPercent > playerPercent + .01f) {
 			return 1f;
-		} else if (touchPercent < playerPercent - threshold) {
+		} else if (touchPercent < playerPercent - .01f) {
 			return -1f;
-		} else {
-			return 0f;
-		}
+		} 
+		return 0f;
 	}
 	void GyroControls(){
 
