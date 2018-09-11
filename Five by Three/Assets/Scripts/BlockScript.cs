@@ -8,7 +8,7 @@ public class BlockScript : MonoBehaviour {
 	public cardColor thisCardColor;
 	private AudioSource Audio;
 	public AudioClip Blip;
-	public GameObject r, g, y;
+	public GameObject r, g, y, trail;
 	void Start(){
 		Audio = GetComponent<AudioSource> ();
 	}

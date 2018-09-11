@@ -15,14 +15,14 @@ public class GameManager : MonoBehaviour {
 	
 	IEnumerator spawnCards(){
 		yield return new WaitForSeconds (spawnTime);
-		GameObject card;
+		GameObject asteroid;
 		int l = Random.Range (0, spawnLocation.Length);
-		card = Instantiate (getCard(), spawnLocation [l].transform.position, this.transform.rotation);
-		card.GetComponent<Rigidbody2D> ().gravityScale = initialFallSpeed + fallSpeed;
+		asteroid = Instantiate (getCard(), spawnLocation [l].transform.position, this.transform.rotation);
+		asteroid.GetComponent<Rigidbody2D> ().gravityScale = initialFallSpeed + fallSpeed;
 		int k = Random.Range (0, spawnLocation.Length);
 		if (l != k) {
-			card = Instantiate (getCard (), spawnLocation [k].transform.position, this.transform.rotation);
-			card.GetComponent<Rigidbody2D> ().gravityScale = initialFallSpeed + fallSpeed;
+			asteroid = Instantiate (getCard (), spawnLocation [k].transform.position, this.transform.rotation);
+			asteroid.GetComponent<Rigidbody2D> ().gravityScale = initialFallSpeed + fallSpeed;
 		} 
 
 		StartCoroutine (spawnCards ());
