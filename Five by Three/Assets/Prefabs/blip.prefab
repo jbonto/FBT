@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4825865094016650}
   - component: {fileID: 212723897838977878}
   - component: {fileID: 95725936960931794}
+  - component: {fileID: 114473722490649324}
   m_Layer: 0
   m_Name: blip
   m_TagString: Untagged
@@ -58,6 +59,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114473722490649324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1559800036093594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4626948240527434baee4847ad1dacd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blipScale: 0.4
 --- !u!212 &212723897838977878
 SpriteRenderer:
   m_ObjectHideFlags: 1

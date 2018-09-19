@@ -33,7 +33,7 @@ public class PlayerScript : MonoBehaviour {
 	private Vector2 empty = new Vector2(0f,0f);
 	private Touch playerTouch;
 	private int sets = 0;
-	public GameObject posTest;
+	public GameObject posTest, blipPrefab, blipCurrent;
 	private Vector3 mousePos;
 	private Vector3 h;
 	// Use this for initialization
@@ -111,6 +111,7 @@ public class PlayerScript : MonoBehaviour {
 	void newPos(float touchPos){
 		float touchPercent = touchPos / Screen.width;
 		posTest.transform.position = new Vector2 (screenPosition(touchPercent), this.transform.position.y);
+		createBlip (screenPosition(touchPercent));
 	}
 	public IEnumerator MoveToTap(float touchPos){
 		int movement = -1;
@@ -156,11 +157,18 @@ public class PlayerScript : MonoBehaviour {
 			Debug.Log  (h.x);
 			changeMous (h);
 		}
-		//		transform.position = Vector2.MoveTowards (this.transform.position, posTest.transform.position, moveSpeed * Time.deltaTime);
 		transform.position = Vector2.MoveTowards (this.transform.position,mousePos, moveSpeed * Time.deltaTime);
 	}
 	void changeMous(Vector3 h){
 		mousePos = new Vector3 (h.x, mousePos.y, mousePos.z);
+		createBlip (h.x);
+	}
+	void createBlip(float x){
+		if (blipCurrent)
+			Destroy (blipCurrent.gameObject);
+		
+		Vector3 blipPos = new Vector3 (x, this.transform.position.y, this.transform.position.z);
+		blipCurrent = Instantiate (blipPrefab, blipPos, this.transform.rotation);
 	}
 	public void addPoints(int r, int g, int y){
 		red += r;
