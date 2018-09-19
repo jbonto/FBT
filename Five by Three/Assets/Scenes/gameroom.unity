@@ -2494,9 +2494,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTime: 1.2
   initialFallSpeed: 0.6
-  redC: {fileID: 1120526018131256, guid: ac0bae9ea5587fd4b8114885404b9441, type: 2}
-  greenC: {fileID: 1008411762021670, guid: c7ba4ccf005c59745853787f9ef152ce, type: 2}
-  yellowC: {fileID: 1957422367947964, guid: c19646722b79f7d4792c0e9826a7dcf2, type: 2}
+  ironAsteroid: {fileID: 1301793564754422, guid: 19ecfa463d1695349bc3dd58a14d3ae7,
+    type: 2}
+  crystalAsteroid: {fileID: 1415051291179470, guid: 742e8319b27e5eb4889beacb1f4acc82,
+    type: 2}
+  goldAsteroid: {fileID: 1839639938056902, guid: fd49cefc94e5d1143964af902b4f6b82,
+    type: 2}
   spawnLocation:
   - {fileID: 1153317862}
   - {fileID: 241789826}
