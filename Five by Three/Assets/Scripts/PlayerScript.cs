@@ -57,6 +57,12 @@ public class PlayerScript : MonoBehaviour {
 		audio = GetComponent<AudioSource> ();
 	}
 
+	void Update(){
+		if (currentControls == controlScheme.Mouse) {
+			MouseControls ();
+		}
+	}
+
 	void FixedUpdate(){
 		playerPercent = (this.transform.position.x - screenLeft) / (screenRight - screenLeft);
 		if (currentControls == controlScheme.Keyboard) {
@@ -67,9 +73,7 @@ public class PlayerScript : MonoBehaviour {
 			GyroControls ();
 		} else if (currentControls == controlScheme.TouchTap) {
 			TouchTap ();
-		} else if (currentControls == controlScheme.Mouse) {
-			MouseControls ();
-		}
+		} 
 	}
 
 	void KeyboardControls(){
