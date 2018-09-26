@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using TMPro;
 public class PlayerScript : MonoBehaviour {
 	[Header("Stats")]
 	public Vector2 playerTouchPosition;
-	private int red = 0, green = 0, yellow = 0;
+	private int iron = 0, crystal = 0, gold = 0;
 	private Rigidbody2D RB2D;
 	public enum controlScheme {Keyboard, TouchHold, TouchTap, Gyrometer, Mouse};
 	public controlScheme currentControls;
@@ -36,6 +37,10 @@ public class PlayerScript : MonoBehaviour {
 	public GameObject posTest, blipPrefab, blipCurrent;
 	private Vector3 mousePos;
 	private Vector3 h;
+	public TextMeshProUGUI ironUiText;
+	public TextMeshProUGUI crystalUiText;
+	public TextMeshProUGUI goldUiText;
+	public TextMeshProUGUI setUiText;
 	// Use this for initialization
 	void Start () {
 		Vector3 h = this.transform.position;
@@ -47,10 +52,7 @@ public class PlayerScript : MonoBehaviour {
 		Debug.Log (test);
 		PlayerPrefs.SetInt ("sets", 0);
 		posTest.transform.position = this.transform.position;
-		setDisplay.text = "Sets: " + sets.ToString ();
-		redScoreDisplay.text = "Red: " + red.ToString ();
-		greenScoreDisplay.text = "Green: " + green.ToString ();
-		yellowScoreDisplay.text = "Yellow: " + yellow.ToString ();
+
 		RB2D = GetComponent<Rigidbody2D> ();
 		PlayerPrefs.SetInt ("sets", 0);
 		audioMixer = Resources.Load ("Audio/CardMixer") as AudioMixer;
@@ -158,7 +160,7 @@ public class PlayerScript : MonoBehaviour {
 		
 		if (Input.GetButtonDown("Fire1")) {
 			h = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			Debug.Log  (h.x);
+//			Debug.Log  (h.x);
 			changeMous (h);
 		}
 		transform.position = Vector2.MoveTowards (this.transform.position,mousePos, moveSpeed * Time.deltaTime);
@@ -175,18 +177,19 @@ public class PlayerScript : MonoBehaviour {
 		blipCurrent = Instantiate (blipPrefab, blipPos, this.transform.rotation);
 	}
 	public void addPoints(int r, int g, int y){
-		red += r;
-		green += g;
-		yellow += y;
+		
+		iron += r;
+		crystal += g;
+		gold += y;
 		//audio.outputAudioMixerGroup = echo;
 
-		if (red > goal || green > goal || yellow > goal) {
+		if (iron > goal || crystal > goal || gold > goal) {
 			PlayerPrefs.SetInt ("sets", sets);
 			SceneManager.LoadScene (levelName);
-		} else if (red == goal && green == goal && yellow == goal) {
-			red = 0;
-			green = 0;
-			yellow = 0;
+		} else if (iron == goal && crystal == goal && gold == goal) {
+			iron = 0;
+			crystal = 0;
+			gold = 0;
 			sets++;
 			gm.adjustFallSpeed ();
 			audio.outputAudioMixerGroup = echo;
@@ -195,9 +198,9 @@ public class PlayerScript : MonoBehaviour {
 			audio.outputAudioMixerGroup = reg;
 			audio.PlayOneShot (cardSound);
 		}
-		//setDisplay.text = "Sets: " + sets.ToString () + "    " + playerTouchPosition.ToString ();
-		redScoreDisplay.text = "Red: " + red.ToString ();
-		greenScoreDisplay.text = "Green: " + green.ToString ();
-		yellowScoreDisplay.text = "Yellow: " + yellow.ToString ();
+		ironUiText.SetText("x "+iron.ToString());
+		crystalUiText.SetText ("x " + crystal.ToString ());
+		goldUiText.SetText ("x " + gold.ToString ());
+		setUiText.SetText ("x " + sets.ToString ());
 	}
 }
