@@ -588,7 +588,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 0
   m_Size: {x: 14.000001, y: 49.11676}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -600,13 +600,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1516837437}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.217, z: 0}
-  m_LocalScale: {x: 2.233247, y: 0.44664946, z: 8.684851}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071064, w: -0.7071072}
+  m_LocalPosition: {x: 0.266, y: 1.801, z: 0}
+  m_LocalScale: {x: 5.0824804, y: 5.628139, z: 5.0824804}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.00001}
 --- !u!95 &1516837440
 Animator:
   serializedVersion: 3
