@@ -145,11 +145,11 @@
  <Reference Include="Ionic.Zip.Unity">
  <HintPath>C:/Users/josh/Desktop/GithubWork/fbt/altrepo/trunk/Five by Three/Assets/Plugins/Ionic.Zip.Unity.dll</HintPath>
  </Reference>
- <Reference Include="TextMeshPro-2017.1-Runtime">
- <HintPath>C:/Users/josh/Desktop/GithubWork/fbt/altrepo/trunk/Five by Three/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.1-Runtime.dll</HintPath>
- </Reference>
  <Reference Include="TextMeshPro-2017.1-Editor">
  <HintPath>C:/Users/josh/Desktop/GithubWork/fbt/altrepo/trunk/Five by Three/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.1-Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="TextMeshPro-2017.1-Runtime">
+ <HintPath>C:/Users/josh/Desktop/GithubWork/fbt/altrepo/trunk/Five by Three/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.1-Runtime.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

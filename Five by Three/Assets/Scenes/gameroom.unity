@@ -3223,11 +3223,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTime: 1.2
   initialFallSpeed: 0.6
-  ironAsteroid: {fileID: 1675664473484362, guid: 3619877f0fdf66a4b9c7baabfda9b31a,
+  ironAsteroid: {fileID: 1965590318077492, guid: 70256bf65ae2fc84fb0963860714a292,
     type: 2}
-  crystalAsteroid: {fileID: 1534192372044702, guid: c48257258c6fd8f4e9d30b6c01912e24,
+  crystalAsteroid: {fileID: 1920457388320986, guid: c6312ce42ba9e934489ec4faca091ec7,
     type: 2}
-  goldAsteroid: {fileID: 1018483324545026, guid: 59ec4058f2238bf4c9d35d051371c556,
+  goldAsteroid: {fileID: 1037635557813896, guid: 614b3f8620579334f9dab6f26a263a6d,
     type: 2}
   spawnLocation:
   - {fileID: 1153317862}

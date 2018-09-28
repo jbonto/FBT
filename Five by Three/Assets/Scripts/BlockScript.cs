@@ -8,9 +8,22 @@ public class BlockScript : MonoBehaviour {
 	public asteroidType thisAsteroid;
 	private AudioSource Audio;
 	public AudioClip Blip;
-	public GameObject trail;
+	public GameObject trail, trail2;
+	public bool randomizeStance;
+
 	void Start(){
 		Audio = GetComponent<AudioSource> ();
+
+		if (trail) {
+			trail.GetComponent<SpriteRenderer> ().sortingOrder = 
+				(this.GetComponent<SpriteRenderer> ().sortingOrder - 1);
+
+		}
+		if (trail2) {
+			trail2.GetComponent<SpriteRenderer> ().sortingOrder = 
+				(this.GetComponent<SpriteRenderer> ().sortingOrder - 2);
+
+		}
 	}
 	void OnTriggerEnter2D(Collider2D other){
 		Debug.Log ("enter");
