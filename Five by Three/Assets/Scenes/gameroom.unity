@@ -1211,10 +1211,10 @@ MonoBehaviour:
   posTest: {fileID: 986985346}
   blipPrefab: {fileID: 1559800036093594, guid: 8a3ed52d25b7d98488f528078efed808, type: 2}
   blipCurrent: {fileID: 0}
-  ironUiText: {fileID: 0}
-  crystalUiText: {fileID: 0}
-  goldUiText: {fileID: 0}
-  setUiText: {fileID: 0}
+  ironUiText: {fileID: 1600315064}
+  crystalUiText: {fileID: 221931894}
+  goldUiText: {fileID: 351788796}
+  setUiText: {fileID: 1437906932}
 --- !u!50 &708321252
 Rigidbody2D:
   serializedVersion: 4
