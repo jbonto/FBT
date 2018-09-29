@@ -11,11 +11,13 @@ public class EndScoreScript : MonoBehaviour {
 	public TextMeshProUGUI[] HSText;
 	// Use this for initialization
 	void Start () {
+		//load the data
 		string entry = "score";
 		for (int i = 0; i < (playerScores.Length-1); i++) {
 			playerScores [i] = PlayerPrefs.GetInt (entry);
 			entry += i;
 		}
+		//sort the data
 		playerScores [playerScores.Length-1] = PlayerPrefs.GetInt ("sets");
 		for(int z = 0; z < playerScores.Length; z++){
 			for (int i = 0; i < (playerScores.Length - 1); i++) {
@@ -29,16 +31,18 @@ public class EndScoreScript : MonoBehaviour {
 		for (int i = 0; i < playerScores.Length; i++) {
 			Debug.Log (i+"   "+playerScores [i]);	
 		}
+		//display and save the data
 		entry = "score";
 		for (int i = 0; i < (playerScores.Length-1); i++) {
 			try{
-				HSText[i].SetText(playerScores[i].ToString());
+				HSText[i].SetText(playerScores[i].ToString("D3"));
 			} catch {
 				Debug.Log ("Textmesh " + i + " is nonexistant");
 			}
 			PlayerPrefs.SetInt(entry, playerScores[i]);
 			entry += i;
 		} 
+		//StartCoroutine (textDelay (entry));
 		/**
 		if (PlayerPrefs.GetInt ("sets") == PlayerPrefs.GetInt ("highscore")) {
 			scoreText.text = "The current high score is: "+PlayerPrefs.GetInt("highscore").ToString()+", equal to the amount of sets you scored.";
@@ -52,6 +56,19 @@ public class EndScoreScript : MonoBehaviour {
 			Debug.Log ("highscore is higher");
 		}
 		*/
+	}
+
+	IEnumerator textDelay(string entry){
+		for (int i = 0; i < (playerScores.Length-1); i++) {
+			try{
+				HSText[i].SetText(playerScores[i].ToString("D3"));
+			} catch {
+				Debug.Log ("Textmesh " + i + " is nonexistant");
+			}
+			PlayerPrefs.SetInt(entry, playerScores[i]);
+			entry += i;
+			yield return new WaitForSeconds (1f);
+		} 
 	}
 	public void goTo(){
 		SceneManager.LoadScene (levelName);

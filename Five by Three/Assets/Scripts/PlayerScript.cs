@@ -109,7 +109,6 @@ public class PlayerScript : MonoBehaviour {
 
 	void TouchTap(){
 		if (Input.touchCount > 0) {
-			setDisplay.text =isMoving.ToString();
 			newPos(Input.GetTouch (0).position.x);
 		}
 		transform.position = Vector2.MoveTowards (this.transform.position, posTest.transform.position, moveSpeed * Time.deltaTime);
