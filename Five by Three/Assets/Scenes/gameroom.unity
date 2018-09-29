@@ -1284,7 +1284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTouchPosition: {x: 0, y: 0}
-  currentControls: 2
+  currentControls: 0
   goal: 5
   moveSpeed: 6
   levelName: endroom

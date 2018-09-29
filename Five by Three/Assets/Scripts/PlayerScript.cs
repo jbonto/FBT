@@ -45,11 +45,6 @@ public class PlayerScript : MonoBehaviour {
 	void Start () {
 		Vector3 h = this.transform.position;
 		mousePos = this.transform.position;
-		string test = "test";
-		test += 1;
-		Debug.Log (test);
-		test +=1 ;
-		Debug.Log (test);
 		PlayerPrefs.SetInt ("sets", 0);
 		posTest.transform.position = this.transform.position;
 
@@ -57,6 +52,15 @@ public class PlayerScript : MonoBehaviour {
 		PlayerPrefs.SetInt ("sets", 0);
 		audioMixer = Resources.Load ("Audio/CardMixer") as AudioMixer;
 		audio = GetComponent<AudioSource> ();
+
+		if (Application.platform == RuntimePlatform.Android) {
+			currentControls = controlScheme.TouchTap;
+		} else if (Application.platform == RuntimePlatform.OSXEditor ||
+		           Application.platform == RuntimePlatform.OSXPlayer ||
+		           Application.platform == RuntimePlatform.WindowsEditor ||
+		           Application.platform == RuntimePlatform.WindowsPlayer) {
+			currentControls = controlScheme.Mouse;
+		}
 	}
 
 	void Update(){
